@@ -1,0 +1,29 @@
+.pagination-page__arrow-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0;
+}
+
+.pagination-page__page-index {
+  width: 70px;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0;
+  padding: 0;
+}
+.pagination-page__button {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.pagination-page__arrow {
+  width: 100%;
+  height: 100%;
+}

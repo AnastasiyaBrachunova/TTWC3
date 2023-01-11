@@ -1,0 +1,29 @@
+.dropdown-list__box {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+.dropdown-list__signature {
+  margin-right: 5px;
+  font-family: "Inter", Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: right;
+  color: black;
+}
+.dropdown-list__cell {
+  width: 7%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.dropdown-list__cell:hover {
+  border-bottom: 2px solid black;
+}
