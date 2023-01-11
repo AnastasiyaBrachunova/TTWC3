@@ -17,7 +17,6 @@ import { ColumnSearch } from "../ColumnSearch/ColumnSearch";
 import { Pagination } from "../Pagination/Pagination";
 import { SetShowPage } from "../SetShowPage/SetShowPage";
 import { HiddenColumns } from "../HiddenColumns/HiddenColumns";
-// import { ExportXls } from "../ExportXls/ExportXls";
 
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []); // useMemo гарантирует, что даннные не будут воссоздаватьсяпри каждом рендеринге
@@ -70,7 +69,6 @@ export const BasicTable = () => {
           pageSize={pageSize}
           setPageSize={(e) => setPageSize(Number(e.target.value))}
         />
-        {/* <ExportXls /> */}
         <GlobalSearch filter={globalFilter} setFilter={setGlobalFilter} />
       </div>
       <HiddenColumns allColumns={allColumns} />
@@ -114,7 +112,6 @@ export const BasicTable = () => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
