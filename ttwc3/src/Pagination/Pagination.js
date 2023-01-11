@@ -1,10 +1,10 @@
 import React from "react";
 import "./Pagination.css";
 
-import nextArrow from "../../images/arrowright_1.png";
-import previosArrow from "../../images/leftarrow_1.png";
-import previosArrowDouble from "../../images/leftarrow_1241.png";
-import nextArrowDouble from "../../images/arrowright_1240.png";
+import nextArrow from "../images/arrowright_1.png";
+import previosArrow from "../images/leftarrow_1.png";
+import previosArrowDouble from "../images/leftarrow_1241.png";
+import nextArrowDouble from "../images/arrowright_1240.png";
 
 export const Pagination = (props) => {
   return (

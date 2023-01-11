@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 import "./GlobalSearch.css";
 
-import find from "../../images/lupa.png";
+import find from "../images/lupa.png";
 
 export const GlobalSearch = ({ filter, setFilter }) => {
   const [value, setValue] = useState(filter);

@@ -1,12 +1,23 @@
 import React, { useMemo } from "react";
-import { useTable, useGlobalFilter, useSortBy, useFilters } from "react-table"; // пакет таблицы
+import {
+  useTable,
+  useGlobalFilter,
+  useSortBy,
+  useFilters,
+  usePagination,
+} from "react-table"; // пакет таблицы
 
-import MOCK_DATA from "../../utils/data_base/MOCK_DATA.json"; //база данных
-import { COLUMNS } from "../../utils/const/сolumns"; // массив столбцов
+import MOCK_DATA from "../utils/data_base/MOCK_DATA.json"; //база данных
+import { COLUMNS } from "../utils/const/columns"; // массив столбцов
 import "./BasicTable.css";
-import arrowSort from "../../images/arrow-down_icon-icons.com_72377.svg";
+
+import arrowSort from "../images/arrow-down_icon-icons.com_72377.svg";
 import { GlobalSearch } from "../GlobalSearch/GlobalSearch";
 import { ColumnSearch } from "../ColumnSearch/ColumnSearch";
+import { Pagination } from "../Pagination/Pagination";
+import { SetShowPage } from "../SetShowPage/SetShowPage";
+import { HiddenColumns } from "../HiddenColumns/HiddenColumns";
+// import { ExportXls } from "../ExportXls/ExportXls";
 
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []); // useMemo гарантирует, что даннные не будут воссоздаватьсяпри каждом рендеринге
@@ -27,24 +38,43 @@ export const BasicTable = () => {
     },
     useGlobalFilter,
     useFilters,
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups, //содержт информацию о заголовке столбца
-    rows,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
     prepareRow,
+    allColumns,
     state,
     setGlobalFilter,
   } = tableInstance; // функции и массивы которые дает useTAble
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
 
   return (
     <>
-      <GlobalSearch filter={globalFilter} setFilter={setGlobalFilter} />
+      <div className="option-table__box">
+        <SetShowPage
+          pageSize={pageSize}
+          setPageSize={(e) => setPageSize(Number(e.target.value))}
+        />
+        {/* <ExportXls /> */}
+        <GlobalSearch filter={globalFilter} setFilter={setGlobalFilter} />
+      </div>
+      <HiddenColumns allColumns={allColumns} />
+
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -80,10 +110,11 @@ export const BasicTable = () => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
+
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
@@ -94,6 +125,16 @@ export const BasicTable = () => {
           })}
         </tbody>
       </table>
+      <Pagination
+        nextPage={() => nextPage()}
+        previousPage={() => previousPage()}
+        pageOptions={pageOptions}
+        pageIndex={pageIndex}
+        canPreviousPage={canPreviousPage}
+        canNextPage={canNextPage}
+        gotoPageBack={() => gotoPage(0)}
+        gotoPageNext={() => gotoPage(pageCount - 1)}
+      />
     </>
   );
 };
