@@ -5,7 +5,7 @@ import {
   useSortBy,
   useFilters,
   usePagination,
-} from "react-table"; // пакет таблицы
+} from "react-table"; 
 
 import MOCK_DATA from "../utils/data_base/MOCK_DATA.json"; //база данных
 import { COLUMNS } from "../utils/const/columns"; // массив столбцов
